@@ -21,6 +21,13 @@ npm run dev
 
 running on http://127.0.0.1:5173/
 
+to manually deploy changes to github pages:
+```bash
+cd frontend
+npm run deploy
+```
+
+running on https://sammy-hutch.github.io/spirit-island-dashboard/
 
 ## TODO:
 (value 1-3 x effort 1-3)
