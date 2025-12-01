@@ -15,5 +15,14 @@ running on vite + react.
 
 to start application:
 ```bash
+cd frontend
 npm run dev
 ```
+
+running on http://127.0.0.1:5173/
+
+
+## TODO:
+(value 1-3 x effort 1-3)
+1: make CSV parsing more robust
+
