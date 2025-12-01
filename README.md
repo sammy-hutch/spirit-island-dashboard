@@ -24,6 +24,7 @@ running on http://127.0.0.1:5173/
 
 ## TODO:
 (value 1-3 x effort 1-3)
-9: var/env/config file to manage variables such as gsheets url
-1: make CSV parsing more robust
+
+- 9: var/env/config file to manage variables such as gsheets url
+- 1: make CSV parsing more robust
 
