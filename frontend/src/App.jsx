@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import styles from './App.module.css'; 
 
 import OverviewPage from './pages/OverviewPage';
@@ -9,26 +9,42 @@ import AdversariesPage from './pages/AdversariesPage';
 function App() {
 return (
   <Router>
-    <div className={styles.App}>
-      <header className={styles.AppHeader}>
+    <div className={styles.appContainer}>
+      <header className={styles.header}>
         <h1>Spirit Island Dashboard</h1>
         {/* Navigation menu */}
         <nav>
-          <ul>
+          <ul className={styles.nav}>
             <li>
-              <NavLink to="/" end className={({ isActive }) => isActive ? "active-link" : ""}>Overview</NavLink>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
+              >
+                Overview
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/spirits" className={({ isActive }) => isActive ? "active-link" : ""}>Spirits</NavLink>
+              <NavLink
+                to="/spirits"
+                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
+              >
+                Spirits
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/adversaries" className={({ isActive }) => isActive ? "active-link" : ""}>Adversaries</NavLink>
+              <NavLink
+                to="/adversaries"
+                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
+              >
+                Adversaries
+              </NavLink>
             </li>
           </ul>
         </nav>
       </header>
 
-      <main className="App-main-content">
+      <main className={styles.mainContent}>
         <Routes>
           <Route path="/" element={<OverviewPage />} />
           <Route path="/spirits" element={<SpiritsPage />} />
