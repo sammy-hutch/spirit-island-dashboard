@@ -2,9 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import styles from './App.module.css'; 
 
-import OverviewPage from './pages/OverviewPage';
-import SpiritsPage from './pages/SpiritsPage';
 import AdversariesPage from './pages/AdversariesPage';
+import GamesPage from './pages/GamesPage';
+import HomePage from './pages/HomePage';
+import OverviewPage from './pages/OverviewPage';
+import ScenariosPage from './pages/ScenariosPage';
+import SpiritsPage from './pages/SpiritsPage';
 
 function App() {
 return (
@@ -21,7 +24,23 @@ return (
                 end
                 className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
               >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/overview"
+                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
+              >
                 Overview
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/games"
+                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
+              >
+                Games
               </NavLink>
             </li>
             <li>
@@ -40,15 +59,26 @@ return (
                 Adversaries
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/scenarios"
+                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
+              >
+                Scenarios
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </header>
 
       <main className={styles.mainContent}>
         <Routes>
-          <Route path="/" element={<OverviewPage />} />
-          <Route path="/spirits" element={<SpiritsPage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/adversaries" element={<AdversariesPage />} />
+          <Route path="/games" element={<GamesPage />} />
+          <Route path="/overview" element={<OverviewPage />} />
+          <Route path="/scenarios" element={<ScenariosPage />} />
+          <Route path="/spirits" element={<SpiritsPage />} />
           <Route path="*" element={<h2>404: Page Not Found</h2>} />
         </Routes>
       </main>
