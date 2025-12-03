@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import styles from './App.module.css'; 
 
 import { GiIsland, GiBroadheadArrow } from 'react-icons/gi';
+import { FaHome, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 import AdversariesPage from './pages/AdversariesPage';
 import GamesPage from './pages/GamesPage';
@@ -11,82 +12,93 @@ import OverviewPage from './pages/OverviewPage';
 import ScenariosPage from './pages/ScenariosPage';
 import SpiritsPage from './pages/SpiritsPage';
 
+const pages = [
+  { path: '/', name: 'Home', component: HomePage, icon: <GiIsland /> },
+  { path: '/overview', name: 'Overview', component: OverviewPage },
+  { path: '/games', name: 'Games', component: GamesPage },
+  { path: '/spirits', name: 'Spirits', component: SpiritsPage },
+  { path: '/adversaries', name: 'Adversaries', component: AdversariesPage },
+  { path: '/scenarios', name: 'Scenarios', component: ScenariosPage },
+]
+
 function App() {
-return (
-  <Router>
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const currentIndex = pages.findIndex(page => page.path === location.pathname);
+  const isFirstPage = currentIndex === 0;
+  const isLastPage = currentIndex === pages.length - 1;
+
+  const handlePrev = () => {
+    if (!isFirstPage) {
+      navigate(pages[currentIndex - 1].path);
+    }
+  };
+
+  const handleNext = () => {
+    if (!isLastPage) {
+      navigate(pages[currentIndex + 1].path);
+    }
+  };
+
+  return (
     <div className={styles.appContainer}>
       <header className={styles.header}>
         <h1>Spirit Island Dashboard</h1>
         {/* Navigation menu */}
-        <nav>
+        <nav className={styles.mainNav}>
+          <button
+            onClick={handlePrev}
+            disabled={isFirstPage}
+            className={`${styles.navArrow} ${isFirstPage ? styles.navArrowDisabled : ''}`}
+            aria-label='Previous Page'
+          >
+            <FaArrowLeft />
+          </button>
+
           <ul className={styles.nav}>
-            <li>
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
-              >
-                <GiIsland />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/overview"
-                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
-              >
-                Overview
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/games"
-                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
-              >
-                Games
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/spirits"
-                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
-              >
-                Spirits
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/adversaries"
-                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
-              >
-                Adversaries
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/scenarios"
-                className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
-              >
-                Scenarios
-              </NavLink>
-            </li>
+            {pages.map((page) => (
+              <li key={page.path}>
+                <NavLink
+                  to={page.path}
+                  end={page.path === '/'}
+                  className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
+                >
+                  {page.icon ? page.icon : page.name}
+                </NavLink>
+              </li>
+            ))}
           </ul>
+
+          <button
+            onClick={handleNext}
+            disabled={isLastPage}
+            className={`${styles.navArrow} ${isLastPage ? styles.navArrowDisabled : ''}`}
+            aria-label="Next Page"
+          >
+            <FaArrowRight />
+          </button>
         </nav>
       </header>
 
       <main className={styles.mainContent}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/adversaries" element={<AdversariesPage />} />
-          <Route path="/games" element={<GamesPage />} />
-          <Route path="/overview" element={<OverviewPage />} />
-          <Route path="/scenarios" element={<ScenariosPage />} />
-          <Route path="/spirits" element={<SpiritsPage />} />
+          {pages.map(page => (
+            <Route key={page.path} path={page.path} element={<page.component />} />
+          ))}
           <Route path="*" element={<h2>404: Page Not Found</h2>} />
         </Routes>
       </main>
     </div>
-  </Router>
-);
+  );
 }
 
-export default App;
+function AppWithRouter() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
+
+export default AppWithRouter;
