@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './SpiritIslandData.module.css';
 
 const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1TkLFfqJU_8pTEsTdU9y6LZnPiv14QvfvKatRa3mM5Us/gviz/tq?tqx=out:csv&gid=214184365";
 
@@ -63,9 +64,9 @@ function SpiritIslandData() {
   const headers = Object.keys(data[0]);
 
   return (
-      <div>
-          <h2>Spirit Island Game Stats</h2>
-          <table>
+      <div className={styles.container}>
+          <h2 className={styles.header}>Spirit Island Game Stats</h2>
+          <table className={styles.table}>
               <thead>
                   <tr>
                       {headers.map((header, index) => (

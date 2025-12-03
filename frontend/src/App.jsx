@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
-import './App.css'; 
+import styles from './App.module.css'; 
 
 import OverviewPage from './pages/OverviewPage';
 import SpiritsPage from './pages/SpiritsPage';
@@ -9,8 +9,8 @@ import AdversariesPage from './pages/AdversariesPage';
 function App() {
 return (
   <Router>
-    <div className="App">
-      <header className="App-header">
+    <div className={styles.App}>
+      <header className={styles.AppHeader}>
         <h1>Spirit Island Dashboard</h1>
         {/* Navigation menu */}
         <nav>
