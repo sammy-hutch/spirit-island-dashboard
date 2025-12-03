@@ -53,7 +53,7 @@ function App() {
             className={`${styles.navArrow} ${isFirstPage ? styles.navArrowDisabled : ''}`}
             aria-label='Previous Page'
           >
-            <FaArrowLeft />
+            <GiBroadheadArrow className={styles.rotateLeft} />
           </button>
 
           <ul className={styles.nav}>
@@ -76,7 +76,7 @@ function App() {
             className={`${styles.navArrow} ${isLastPage ? styles.navArrowDisabled : ''}`}
             aria-label="Next Page"
           >
-            <FaArrowRight />
+            <GiBroadheadArrow className={styles.rotateRight} />
           </button>
         </nav>
       </header>
