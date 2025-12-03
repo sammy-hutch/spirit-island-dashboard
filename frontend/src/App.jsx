@@ -2,8 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import styles from './App.module.css'; 
 
-import { GiIsland, GiBroadheadArrow } from 'react-icons/gi';
-import { FaHome, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { GiBroadheadArrow, GiIsland, GiPerspectiveDiceSixFacesOne, GiPodium, GiSparkSpirit, GiSpookyHouse, GiTribalShield } from './assets/icons';
 
 import AdversariesPage from './pages/AdversariesPage';
 import GamesPage from './pages/GamesPage';
@@ -14,11 +13,11 @@ import SpiritsPage from './pages/SpiritsPage';
 
 const pages = [
   { path: '/', name: 'Home', component: HomePage, icon: <GiIsland /> },
-  { path: '/overview', name: 'Overview', component: OverviewPage },
-  { path: '/games', name: 'Games', component: GamesPage },
-  { path: '/spirits', name: 'Spirits', component: SpiritsPage },
-  { path: '/adversaries', name: 'Adversaries', component: AdversariesPage },
-  { path: '/scenarios', name: 'Scenarios', component: ScenariosPage },
+  { path: '/overview', name: 'Overview', component: OverviewPage, icon: <GiPodium /> },
+  { path: '/games', name: 'Games', component: GamesPage, icon: <GiPerspectiveDiceSixFacesOne /> },
+  { path: '/spirits', name: 'Spirits', component: SpiritsPage, icon: <GiSparkSpirit /> },
+  { path: '/adversaries', name: 'Adversaries', component: AdversariesPage, icon: <GiSpookyHouse /> },
+  { path: '/scenarios', name: 'Scenarios', component: ScenariosPage, icon: <GiTribalShield /> },
 ]
 
 function App() {
