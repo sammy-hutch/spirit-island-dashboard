@@ -43,6 +43,14 @@
   transition: background-color 0.3s ease;
 }
 
+.navLink svg {
+  font-size: 1.2em;
+}
+
+.activeNavLink svg {
+  font-size: 1.3em;
+}
+
 .navLink:hover {
   background-color: #61dafb;
   color: #282c34;

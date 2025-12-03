@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import styles from './App.module.css'; 
 
+import { GiIsland, GiBroadheadArrow } from 'react-icons/gi';
+
 import AdversariesPage from './pages/AdversariesPage';
 import GamesPage from './pages/GamesPage';
 import HomePage from './pages/HomePage';
@@ -24,7 +26,7 @@ return (
                 end
                 className={({ isActive }) => isActive ? `${styles.navLink} ${styles.activeNavLink}` : styles.navLink}
               >
-                Home
+                <GiIsland />
               </NavLink>
             </li>
             <li>
